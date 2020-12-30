@@ -27,7 +27,7 @@ FD.append( 'total', total );
 FD.append( 'name', name );
 FD.append( 'address', address );
 
-  XHR.open( 'POST', 'http://localhost:8000/checkout/' );
+  XHR.open( 'POST', 'https://italian-delicaciess.herokuapp.com/checkout/' );
   XHR.send( FD );
   console.log(FD);
   XHR.onload = function () {
