@@ -28,11 +28,12 @@ def checkout(request):
     #     return redirect("menu/")
 
 def track_order(request):
-
+    user_orders=[]
     if request.method == "GET":
-        print("=======track_order==GET===")
-        user_orders = Order.objects.filter(account_name=request.user).values().order_by("-pk")
-        print(user_orders)
+        if request.user.is_authenticated:
+            print("=======track_order==GET===")
+            user_orders = Order.objects.filter(account_name=request.user).values().order_by("-pk")
+            print(user_orders)
     return render(request,'home_app/track.html',{'order_items':list(user_orders)})
 
 @csrf_exempt
