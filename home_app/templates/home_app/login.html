@@ -1,0 +1,119 @@
+<html lang="en">
+	<head>
+        {% load static %}
+
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{%static "home/css/style.css"%}">
+		<link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
+		<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" href="{%static "login/css/google.css"%}">
+
+    	<title>Italian Delicacies</title>
+    	<link rel="icon" href="{% static "home/images/logo.png"%}">
+        <!---End navigation Bar Head-->
+        <!-- Required meta tags-->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Colorlib Templates">
+        <meta name="author" content="Colorlib">
+        <meta name="keywords" content="Colorlib Templates">
+
+        <!-- Title Page-->
+        <title>Au Register Forms by Colorlib</title>
+
+        <!-- Icons font CSS-->
+        <link href="{%static "login/vendor/mdi-font/css/material-design-iconic-font.min.css"%}" rel="stylesheet" media="all">
+        <link href="{%static "login/vendor/font-awesome-4.7/css/font-awesome.min.css"%}" rel="stylesheet" media="all">
+        <!-- Font special for pages-->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+        <!-- Vendor CSS-->
+        <link href="{%static "login/vendor/select2/select2.min.css"%}" rel="stylesheet" media="all">
+        <link href="{%static "login/vendor/datepicker/daterangepicker.css"%}" rel="stylesheet" media="all">
+
+        <!-- Main CSS-->
+        <link href="{%static "login/css/main.css"%}" rel="stylesheet" media="all">
+
+        
+	</head>
+	<body data-spy="scroll" data-target=".navbar" data-offset="50" background-image=url("{%static "home/images/slider3.jpg"%}") >
+	  	<div id="Welcome">
+	  		<!---Start navigation Bar -->
+	    	<nav class="navbar navbar-expand-lg navbar fixed-top  navbar-light bg-light">
+		 		<a class="navbar-brand" href="#Welcome">
+    				<img src="{%static "home/images/logo.png"%}" width="50" height="50" class="d-inline-block" alt=""> Italian Delicacies
+		 		</a>
+		 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+		 		</button>
+			  	<div class="collapse navbar-collapse" id="navbarText">
+			    	<ul class="navbar-nav ml-auto">
+			      		<li class="nav-item">
+			        		<a class="nav-link active" href="/">Welcome</a>
+			      		</li>
+					    <li class="nav-item">
+					    	<a class="nav-link" href="/menu">Menu</a>
+					    </li>
+					     
+					    <li class="nav-item">
+					    	<a class="nav-link" href="/checkout/track_order">My Orders</a>
+					    </li>
+					     <li class="nav-item">
+						{% if user.is_authenticated %}
+						<a class="nav-link" href="/accounts/logout/"> {{ user.username }}</a>
+					{% else %}
+						<a class="nav-link" href="/login"> Login</a>
+					{% endif %}
+						</li>
+				    </ul>
+				</div>
+			</nav>
+        </div>
+
+    
+        <!---End navigation Bar -->
+        <!--Login register -->
+        
+        <div class="page-wrapper bg-black p-t-180 p-b-100 font-robo">
+        <div class="wrapper wrapper--w960">
+            <div class="card card-2">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title cls-gln">Registration/Login</h2>
+                    
+                        <center>
+                        <div class="p-t-30">
+                            {% comment %} <button class="btn btn--radius btn--green" type="submit">Search</button> {% endcomment %}
+                        
+                        <div class="google-btn">
+                        <div class="google-icon-wrapper">
+                            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                        </div>
+                        <p class="btn-text" onclick="window.location='/accounts/google/login/?process=login';"><b>Sign in with google</b></p>
+                        </div>
+                        </div>
+                        </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+
+
+    <!-- Jquery JS-->
+    <script src="{%static "login/vendor/jquery/jquery.min.js"%}"></script>
+    <!-- Vendor JS-->
+    <script src="{%static "login/vendor/select2/select2.min.js"%}"></script>
+    <script src="{%static "login/vendor/datepicker/moment.min.js"%}"></script>
+    <script src="{%static "login/vendor/datepicker/daterangepicker.js"%}"></script>
+
+    <!-- Main JS-->
+    <script src="{%static 'login/js/global.js'%}"></script>
+        
+    </body>      
+</html>      

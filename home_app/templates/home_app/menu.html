@@ -1,0 +1,253 @@
+
+<html>
+	<head>
+        {% load static %}
+
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{%static "home/css/style.css"%}">
+		<link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
+		<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+
+    	<title>Italian Delicacies</title>
+    	<link rel="icon" href="{% static "home/images/logo.png"%}">
+	</head>
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	  	<div id="Welcome">
+	  		<!---Start navigation Bar -->
+	    	<nav class="navbar navbar-expand-lg navbar fixed-top  navbar-light bg-light">
+		 		<a class="navbar-brand" href="#Welcome">
+    				<img src="{%static "home/images/logo.png"%}" width="50" height="50" class="d-inline-block" alt=""> Italian Delicacies
+		 		</a>
+		 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		    		<span class="navbar-toggler-icon"></span>
+		 		</button>
+			  	<div class="collapse navbar-collapse" id="navbarText">
+			    	<ul class="navbar-nav ml-auto">
+			      		<li class="nav-item">
+			        		<a class="nav-link " href="/">Welcome</a>
+			      		</li>
+					    <li class="nav-item">
+					    	<a class="nav-link active" href="/menu">Menu</a>
+					    </li>
+					     
+					    <li class="nav-item">
+					    	<a class="nav-link" href="/checkout/track_order">My Orders</a>
+					    </li>
+					     <li class="nav-item">
+						{% if user.is_authenticated %}
+						<a class="nav-link" href="/accounts/logout/"> {{ user.username }}</a>
+					{% else %}
+						<a class="nav-link" href="/login"> Login</a>
+					{% endif %}
+						</li>
+				    </ul>
+				</div>
+			</nav>
+			<!--- End Navigation Bar -->
+		</div>	
+        <section class="jumbotron text-center" style="background-image: url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png');color:white;">
+        <div class="container">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+          <h1 class="jumbotron-heading"><strong>!! Served Hot !!</strong></h1>
+          <p class="lead "><strong>"A balanced diet is a cookie in each hand :)"<strong></p>
+          <p>
+          <br/>
+            <a  class="btn btn-primary my-2" style="background: yellowgreen;border: none;" id="checkout-to-cart"><strong>CHECKOUT      </strong><span  class="btn btn-sm btn-outline-secondary"><img src="{%static "menu/deli.png"%}" style="height:30px;width:30px;border-left: 0px;"></span></a>
+            {% comment %} <a href="#" class="btn btn-secondary my-2">Secondary action</a> {% endcomment %}
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+
+            {% for choice in menu_items %}
+
+            <div class="col-md-4" >
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" style="margin: 20px;width: auto;" src={{ choice.image}} alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">{{ choice.name}} </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart" style="border-right: 0px;background: #000000;color: white;" id={{ choice.id}}><strong> ADD TO CART</strong></button>
+                      
+                      <span  class="btn btn-sm btn-outline-secondary"><img src="{%static "menu/food.png"%}" style="height:30px;width:30px;border-left: 0px;background:#fdb827"></span>
+                    </div>
+                    <small class="text-muted">&#x20B9;{{ choice.price}} /-</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+                      {% endfor %}
+            
+            {% comment %} <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" style="margin: 20px;width: auto;" src="https://i.pinimg.com/564x/49/57/60/495760578fca6bd7d61d7a45cd8fd699.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" style="border-right: 0px;background: #000000;color: white;"><strong> ADD TO CART</strong></button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{%static "menu/food.png"%}" style="height:30px;width:30px;border-left: 0px;background:#fdb827"></button>
+                    </div>
+                    <small class="text-muted">&#x20B9;200 /-</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    <script src="{%static "menu/cart.js"%}"></script>
+  	</body>
+</html>
+
+{% comment %} {% for choice in menu_items %}
+
+<div class="col-md-4" id={{ choice.id}}>
+  <div class="card mb-4 box-shadow">
+    <img class="card-img-top" style="margin: 20px;width: auto;" src={{ choice.image}} alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">{{ choice.name}} </p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-outline-secondary" style="border-right: 0px;background: #000000;color: white;"><strong> ADD TO CART</strong></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{%static "menu/food.png"%}" style="height:30px;width:30px;border-left: 0px;background:#fdb827"></button>
+        </div>
+        <small class="text-muted">&#x20B9;{{ choice.price}} /-</small>
+      </div>
+    </div>
+  </div>
+</div>
+            <li>{{ choice.name}}</li>
+          {% endfor %} {% endcomment %}
