@@ -25,7 +25,9 @@ SECRET_KEY = 'lvll+#t)8hu5t)%(qse%_%p@o5!%(i)8_%$@w*l(a8$qhszm@*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['italian-delicaciess.herokuapp.com','127.0.0.1','localhost']
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_HEADERS = ['*']
+#ALLOWED_HOSTS = ['italian-delicaciess.herokuapp.com','127.0.0.1','localhost']
 
 
 # Application definition
