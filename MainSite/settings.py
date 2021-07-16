@@ -27,7 +27,7 @@ DEBUG = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_HEADERS = ['*']
-#ALLOWED_HOSTS = ['italian-delicaciess.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['italian-delicaciess.herokuapp.com','127.0.0.1','localhost']
 
 
 # Application definition
