@@ -11,6 +11,9 @@ var lastName = document.getElementById("lastName").value;
 var address1 = document.getElementById("address").value;
 var address2 = document.getElementById("address2").value;
 
+if (!(firstName && lastName && address1 && address2)){
+  alert('Please fill out the Delivery Details !')
+}
 
 var name = firstName + " " + lastName
 var address = address1 + address2
