@@ -36,7 +36,7 @@ Array.from(menu).forEach(function(element) {
       for( name in data ) {
         FD.append( name, data[ name ] );
       }
-      XHR.open( 'POST', 'http://127.0.0.1:8000/menu/' );
+      XHR.open( 'POST', 'https://italian-delicaciess.herokuapp.com/menu/' );
       XHR.send( FD );
       console.log(FD);
       XHR.onload = function () {
