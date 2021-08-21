@@ -29,12 +29,15 @@ def checkout(request):
 
 def track_order(request):
     user_orders=[]
+    msg = ''
     if request.method == "GET":
         if request.user.is_authenticated:
             print("=======track_order==GET===")
             user_orders = Order.objects.filter(account_name=request.user).values().order_by("-pk")
             print(user_orders)
-    return render(request,'home_app/track.html',{'order_items':list(user_orders)})
+        else:
+            msg = 'Please Log in to view your Orders ! '   
+    return render(request,'home_app/track.html',{'order_items':list(user_orders),'msg':msg})
 
 @csrf_exempt
 def menu(request):
@@ -43,20 +46,24 @@ def menu(request):
 
         return render(request,'home_app/menu.html',{'menu_items':list(menu_items)})    
     elif request.method == "POST":
-        print("=======MENU==POST===")
-        bill = []
-        items_quantity_array  = dict(request.POST)
-        food_items = list(items_quantity_array.keys())
-        billing_info = Menu.objects.filter(pk__in=food_items)
-        total = 0 
-        for row in billing_info:
-            bill_row = {}
-            bill_row['item_name'] =  row.name
-            bill_row['item_qty'] =  int(items_quantity_array[str(row.pk)][0])
-            bill_row['unit_price'] = float(row.price)
-            bill_row['amount'] = round(bill_row['item_qty'] * float(row.price),2)
-            total  += bill_row['amount']
-            bill.append(bill_row)
-        print(bill)    
-        print(total)    
-        return render(request,'home_app/checkout.html',{'bill':bill,'total':round(total,2)})  
+        print("=======MENU==POST===",request.user)
+        if request.user.is_authenticated:
+            bill = []
+            items_quantity_array  = dict(request.POST)
+            food_items = list(items_quantity_array.keys())
+            billing_info = Menu.objects.filter(pk__in=food_items)
+            total = 0 
+            for row in billing_info:
+                bill_row = {}
+                bill_row['item_name'] =  row.name
+                bill_row['item_qty'] =  int(items_quantity_array[str(row.pk)][0])
+                bill_row['unit_price'] = float(row.price)
+                bill_row['amount'] = round(bill_row['item_qty'] * float(row.price),2)
+                total  += bill_row['amount']
+                bill.append(bill_row)
+            print(bill)    
+            print(total)    
+            return render(request,'home_app/checkout.html',{'bill':bill,'total':round(total,2)})  
+        else:
+            return render(request,'home_app/login.html',{'msg':'Please Log in to Place an Order ! '})
+
