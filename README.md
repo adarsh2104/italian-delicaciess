@@ -1,5 +1,14 @@
 ##                               Italian Delicaciess [italian-delicaciess.herokuapp.com](https://italian-delicaciess.herokuapp.com/menu)
 <p align="center"><img width="100%" height="700px" src="https://github.com/adarsh2104/italian-delicaciess/blob/main/Visuals/1.Home.png"></img></p>
+
+### Stacks Used:
+* Python 3.6
+* Django 2.2
+* django-allauth 0.44
+* Bootstrap 4
+* HTML/CSS/JS
+* SQLite
+
 A responsive website design with following salient features:
 
 1. Menu Page:
@@ -22,11 +31,3 @@ A responsive website design with following salient features:
 4. Client Orders Dashboard:
    * Dashboard to display all the orders placed by the client in reverse chronological order.
    <p align="center"><img width="100%" height="500px" src="https://github.com/adarsh2104/italian-delicaciess/blob/main/Visuals/6.Order_Dashboard.png"></img></p>
-
-### Stacks Used:
-* Python 3.6
-* Django 2.2
-* django-allauth 0.44
-* Bootstrap 4
-* HTML/CSS/JS
-* SQLite
